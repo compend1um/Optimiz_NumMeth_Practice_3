@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def gradient_descent(f, grad, start_point, step=0.01, eps= 10**(-8), direction='min', projection=None):
+def gradient_descent(f, grad, start_point, step=0.01, eps= 10**(-8), direction='min', projection=None, max_iterations=4000):
 
     point = np.array(start_point)
 
@@ -10,7 +10,7 @@ def gradient_descent(f, grad, start_point, step=0.01, eps= 10**(-8), direction='
 
     flag = 1 if direction == 'min' else -1
 
-    while True:
+    for iteration in range(max_iterations):
         gradient = np.array(grad(point))
         new_point = point - flag * step * gradient
 
