@@ -1,5 +1,6 @@
 import numpy as np
 import numdifftools as nd
+import numpy as np
 from math import sqrt, sin, cos, exp
 
 from source.common.gradient_descent import gradient_descent
@@ -11,10 +12,23 @@ def main_function(point):
     return sin(1 + x + 2 * exp(y)) * cos(2 * exp(x) - y - 1)
 
 
-gradient_function = nd.Gradient(main_function)
-
 def gradient(point):
-    return gradient_function(point)
+    x, y = point
+
+    arg1 = 1 + x + 2 * np.exp(y)
+    arg2 = 2 * np.exp(x) - y - 1
+
+    sin1 = np.sin(arg1)
+    cos1 = np.cos(arg1)
+    sin2 = np.sin(arg2)
+    cos2 = np.cos(arg2)
+
+    df_dx = cos1 * cos2 - 2 * np.exp(x) * sin1 * sin2
+
+    df_dy = 2 * np.exp(y) * cos1 * cos2 + sin1 * sin2
+
+    return np.array([df_dx, df_dy])
+
 
 def remove_duplicates(results, eps=10**(-2)):
     unique_results = []
