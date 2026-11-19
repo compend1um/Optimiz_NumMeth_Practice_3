@@ -45,13 +45,16 @@ def print_result_without_outlier(
 ):
 
     print(
-        "арифметическое среднее\n",
-        f"точка: {arithmetic_mean_point}\t значение: {arithmetic_mean_value}\n\n",
+        "БЕЗ ВЫБРОСА\n\n",
+        "Арифметическое среднее: ",
+        f"x = {arithmetic_mean_point[0]:.6f}, y = {arithmetic_mean_point[1]:.6f}, z = {arithmetic_mean_point[2]:.6f}, "
+        f"F = {arithmetic_mean_value:.8f}\n",
 
-        "геометрическая медиана\n",
-        f"точка {geometric_median_point}\t значение: {geometric_median_value}\n\n",
+        "Геометрическая медиана: ",
+        f"x = {geometric_median_point[0]:.6f}, y = {geometric_median_point[1]:.6f}, z = {geometric_median_point[2]:.6f}, "
+        f"F = {geometric_median_value:.8f}\n\n",
 
-        f"Расстояние между ними: {np.linalg.norm(arithmetic_mean_point - geometric_median_point)}\n\n",
+        f"Расстояние между ними: {np.linalg.norm(arithmetic_mean_point - geometric_median_point):.6f}\n",
         sep=""
     )
 
@@ -65,12 +68,15 @@ def print_result_with_outlier(
 ):
 
     print(
-        "=== С ВЫБРОСОМ ===\n\n",
-        "арифметическое среднее\n",
-        f"точка: {arithmetic_mean_point_out}, значение = {arithmetic_mean_value_out}\n\n",
+        "С ВЫБРОСОМ\n\n",
+        "Арифметическое среднее: ",
+        f"x = {arithmetic_mean_point_out[0]:.6f}, y = {arithmetic_mean_point_out[1]:.6f}, z = {arithmetic_mean_point_out[2]:.6f}, "
+        f"F = {arithmetic_mean_value_out:.8f}\n",
 
-        "геометрическая медиана\n"
-        f"точка: {geometric_median_point_out}, значение = {geometric_median_value_out}\n",
+        "Геометрическая медиана: "
+        f"x = {geometric_median_point_out[0]:.6f}, y = {geometric_median_point_out[1]:.6f}, z = {geometric_median_point_out[2]:.6f}, "
+        f"F = {geometric_median_value_out:.8f}\n",
+
         sep="",
           )
 
@@ -81,7 +87,7 @@ def compare(arithmetic_mean_point_out, arithmetic_mean_point,
     shift_mean = np.linalg.norm(arithmetic_mean_point_out - arithmetic_mean_point)
     shift_median = np.linalg.norm(geometric_median_point_out - geometric_median_point)
 
-    print("=== СДВИГ ОЦЕНОК ===\n",
+    print("СДВИГ ОЦЕНОК\n\n",
 
     f"Среднее сдвинулось на: {shift_mean:.4f}\n",
     f"Медиана сдвинулась на: {shift_median:.4f}\n",
