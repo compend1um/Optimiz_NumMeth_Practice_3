@@ -16,11 +16,11 @@ def run_task1():
     boundary_min = find_boundary_extrema('min')
     boundary_max = find_boundary_extrema('max')
 
-    print_results("ВНУТРЕННИЕ МИНИМУМЫ", inside_min)
-    print_results("ВНУТРЕННИЕ МАКСИМУМЫ", inside_max)
+    print_results("Внутренние минимумы", inside_min)
+    print_results("Внутренние максимумы", inside_max)
 
-    print_results("МИНИМУМЫ НА ГРАНИЦЕ", boundary_min)
-    print_results("МАКСИМУМЫ НА ГРАНИЦЕ", boundary_max)
+    print_results("Минимумы на границе", boundary_min)
+    print_results("Максимумы на границе", boundary_max)
 
     all_min = inside_min + boundary_min
     all_max = inside_max + boundary_max
@@ -38,5 +38,5 @@ def run_task1():
         if abs(i[1] - global_max_value) < 10 ** (-6)
     ]
 
-    print_results("ГЛОБАЛЬНЫЕ МИНИМУМЫ", global_min)
-    print_results("ГЛОБАЛЬНЫЕ МАКСИМУМЫ", global_max)
+    print_results("Глобальные минимумы", global_min)
+    print_results("Глобальные максимумы", global_max)

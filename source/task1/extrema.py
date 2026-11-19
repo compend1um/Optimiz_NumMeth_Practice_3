@@ -30,7 +30,7 @@ def gradient(point):
     return np.array([df_dx, df_dy])
 
 
-def remove_duplicates(results, eps=10**(-2)):
+def remove_duplicates(results, eps=10**(-4)):
     unique_results = []
 
     for point, value in results:
@@ -69,7 +69,7 @@ def find_extrema(direction):
             projection=projection_circle,
         )
 
-        if np.linalg.norm(point) < sqrt(7) - 0.01:
+        if np.linalg.norm(point) < sqrt(7) - 10**(-4):
             results.append((point, value))
 
     return remove_duplicates(results)
