@@ -1,8 +1,6 @@
 from source.common.gradient_descent import gradient_descent
 import numpy as np
 
-# __all__ = ['main_func']
-
 
 def make_f(points):
     def f(a):
@@ -10,13 +8,12 @@ def make_f(points):
     return f
 
 
-# 2. Градиент grad(a) = сумма (a - x_i) / ||a - x_i||
 def make_grad(points):
     def grad(a):
-        diff = a - points                           # Векторы от точек к a
-        dist = np.linalg.norm(diff, axis=1)    # Расстояния
-        dist = np.maximum(dist, 1e-12)         # Защита от деления на 0
-        return np.sum(diff / dist[:, None], axis=0) # Сумма единичных векторов
+        diff = a - points
+        dist = np.linalg.norm(diff, axis=1)
+        dist = np.maximum(dist, 1e-12)
+        return np.sum(diff / dist[:, None], axis=0)
     return grad
 
 
@@ -103,23 +100,17 @@ def plot_results(points, points_out,
     from mpl_toolkits.mplot3d import Axes3D  # нужно для 3D
     import numpy as np
 
-    # Создаем фигуру с двумя графиками рядом
     fig = plt.figure(figsize=(14, 6))
 
-    # ==========================================
-    # ГРАФИК 1: БЕЗ ВЫБРОСА
-    # ==========================================
+    # БЕЗ ВЫБРОСА
     ax1 = fig.add_subplot(121, projection='3d')
 
-    # Рисуем 50 точек (синие, полупрозрачные)
     ax1.scatter(points[:, 0], points[:, 1], points[:, 2],
                 c='blue', alpha=0.6, label='Точки (N=50)')
 
-    # Рисуем Среднее (оранжевый крестик)
     ax1.scatter(*mean_pt, c='orange', marker='x', s=100,
                 label='Среднее арифм.', linewidths=3)
 
-    # Рисуем Медиану (зеленая звездочка)
     ax1.scatter(*gm_pt, c='green', marker='*', s=150,
                 label='Геом. медиана')
 
@@ -129,28 +120,21 @@ def plot_results(points, points_out,
     ax1.set_zlabel('Z')
     ax1.legend()
 
-    # ==========================================
-    # ГРАФИК 2: С ВЫБРОСОМ
-    # ==========================================
+    # С ВЫБРОСОМ
     ax2 = fig.add_subplot(122, projection='3d')
 
-    # Отделяем 50 старых точек от выброса для красоты
-    points_50 = points_out[:-1]  # все, кроме последней
-    outlier = points_out[-1]  # последняя точка (выброс)
+    points_50 = points_out[:-1]
+    outlier = points_out[-1]
 
-    # Рисуем 50 точек (синие)
     ax2.scatter(points_50[:, 0], points_50[:, 1], points_50[:, 2],
                 c='blue', alpha=0.6, label='Точки (N=50)')
 
-    # Рисуем выброс (красный ромб)
     ax2.scatter(*outlier, c='red', marker='D', s=80,
                 label='Выброс (дист. 25)')
 
-    # Рисуем Среднее (оранжевый крестик)
     ax2.scatter(*mean_pt_out, c='orange', marker='x', s=100,
                 label='Среднее арифм.', linewidths=3)
 
-    # Рисуем Медиану (зеленая звездочка)
     ax2.scatter(*gm_pt_out, c='green', marker='*', s=150,
                 label='Геом. медиана')
 
@@ -160,13 +144,8 @@ def plot_results(points, points_out,
     ax2.set_zlabel('Z')
     ax2.legend()
 
-    # Настраиваем отступы, чтобы ничего не слипалось
     plt.tight_layout()
 
-    # Сохраняем в файл (высокое разрешение для отчета)
     plt.savefig('task2_results.png', dpi=300)
 
-    # Показываем на экране
     plt.show()
-
-
