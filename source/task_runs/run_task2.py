@@ -16,7 +16,6 @@ from source.task2.geometric_median import compare
 from source.task2.geometric_median import plot_results
 
 from source.common.gradient_descent import gradient_descent
-from source.common.gradient_descent import gradient_descent_
 
 
 def run_task_2(key):
@@ -33,7 +32,7 @@ def run_task_2(key):
 
     arithmetic_mean_point_out, arithmetic_mean_value_out = calculate_arithmetic_mean(points_out)
 
-    geometric_median_point_out, geometric_median_value_out = gradient_descent_(
+    geometric_median_point_out, geometric_median_value_out = gradient_descent(
         make_f(points_out), make_grad(points_out), arithmetic_mean_point_out, step=0.01, eps=10**(-6)
     )
 

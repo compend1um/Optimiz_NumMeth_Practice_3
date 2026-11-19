@@ -40,5 +40,3 @@ def run_task1():
 
     print_results("ГЛОБАЛЬНЫЕ МИНИМУМЫ", global_min)
     print_results("ГЛОБАЛЬНЫЕ МАКСИМУМЫ", global_max)
-
-run_task1()
